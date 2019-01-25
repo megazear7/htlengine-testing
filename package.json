@@ -4,7 +4,8 @@
   "description": "Sandbox for the HTL Javascript Engine",
   "main": "main.js",
   "dependencies": {
-    "@adobe/htlengine": "^2.1.1"
+    "@adobe/htlengine": "^2.1.1",
+    "require-from-string": "^2.0.2"
   },
   "devDependencies": {},
   "scripts": {

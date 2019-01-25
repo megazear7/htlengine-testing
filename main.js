@@ -1,5 +1,6 @@
 const { Compiler } = require('@adobe/htlengine');
 const { Runtime } = require('@adobe/htlengine');
+const requireFromString = require('require-from-string');
 
 let headerComponent = {
   title: 'Hello, World!',
@@ -8,29 +9,21 @@ let headerComponent = {
 
 // Why in the world does "withRuntimeVar" take a string of a variable name????
 const compiler = new Compiler()
-      .withOutputDirectory('')
-      .includeRuntime(true)
-      .withRuntimeVar('headerComponent')
-      .withRuntimeGlobalName('it');
+  .withOutputDirectory('')
+  .includeRuntime(true)
+  .withRuntimeVar('headerComponent')
+  .withRuntimeGlobalName('it');
 
-compiler.compileToString(`
-  <h1>${headerComponent.title}</h1>
-  <p>${headerComponent.description}</p>
-`).then(js => {
-  // Am I using the right method to compile? Why do I have to eval a string of JavaScript?
-  eval(js);
+async function main() {
+  const filename = await compiler.compileToString(`
+    <h1>${headerComponent.title}</h1>
+    <p>${headerComponent.description}</p>
+  `);
 
-  main = async function main(resource) {
-    const runtime = new Runtime();
-    runtime.setGlobal(resource);
-    await run(runtime);
-    return {
-      body: runtime.stream
-    };
-  };
+  const { main } = requireFromString(filename);
+  const { body } = await main({});
+  return body;
+}
 
-  // What is supposed to get passed into this method?
-  result = main('');
-
-  result.then(({body}) => console.log(body));
-});
+main()
+.then(body => console.log(body));
