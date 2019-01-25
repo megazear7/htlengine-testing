@@ -11,7 +11,6 @@ const GLOBALS = {
 };
 
 const compiler = new Compiler()
-  .withOutputDirectory('')
   .includeRuntime(true)
   .withRuntimeVar(Object.keys(GLOBALS))
   .withRuntimeGlobalName('it');
