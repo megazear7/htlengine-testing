@@ -1,0 +1,30 @@
+{
+  "name": "htlengine-testing",
+  "version": "1.0.0",
+  "description": "Sandbox for the HTL Javascript Engine",
+  "main": "main.js",
+  "dependencies": {
+    "@adobe/htlengine": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adobe/htlengine.git"
+  },
+  "keywords": [
+    "HTL",
+    "Compiler",
+    "Engine",
+    "Sandbox"
+  ],
+  "author": "Alex Lockhart",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adobe/htlengine/issues"
+  },
+  "homepage": "https://github.com/adobe/htlengine#readme"
+}
