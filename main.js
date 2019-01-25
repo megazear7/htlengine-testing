@@ -14,5 +14,5 @@ async function main(file) {
   return body;
 }
 
-main('template.html')
+main('examplecomponent.html')
 .then(body => console.log(body));
