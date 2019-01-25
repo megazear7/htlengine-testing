@@ -7,7 +7,7 @@ let headerComponent = {
   description: 'Some stuff.'
 };
 
-// Why in the world does "withRuntimeVar" take a string of a variable name????
+// Why does "withRuntimeVar" take a string of a variable name?!
 const compiler = new Compiler()
   .withOutputDirectory('')
   .includeRuntime(true)
@@ -15,12 +15,13 @@ const compiler = new Compiler()
   .withRuntimeGlobalName('it');
 
 async function main() {
-  const filename = await compiler.compileToString(`
+  // Why does "compileToString" return a string of JavaScript?!
+  const js = await compiler.compileToString(`
     <h1>${headerComponent.title}</h1>
     <p>${headerComponent.description}</p>
   `);
 
-  const { main } = requireFromString(filename);
+  const { main } = requireFromString(js);
   const { body } = await main({});
   return body;
 }
