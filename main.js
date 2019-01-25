@@ -1,5 +1,7 @@
 const { Compiler } = require('@adobe/htlengine');
 const requireFromString = require('require-from-string');
+const path = require('path');
+const fs = require('fs-extra');
 
 const GLOBALS = {
   headerComponent: {
@@ -15,13 +17,11 @@ const compiler = new Compiler()
   .withRuntimeGlobalName('it');
 
 async function main() {
-  // Why does "compileToString" return a string of JavaScript?!
-  const js = await compiler.compileToString("<h1>${headerComponent.title}</h1><p>${headerComponent.description}</p>");
-
+  const template = await fs.readFile(path.resolve(__dirname, 'template.html'), 'utf-8');
+  const js = await compiler.compileToString(template);
   const { main } = requireFromString(js);
   const { body } = await main(GLOBALS);
   return body;
 }
 
-main()
-.then(body => console.log(body));
+main().then(body => console.log(body));
