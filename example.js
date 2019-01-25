@@ -6,4 +6,4 @@ async function main(file) {
   return render(await fs.readFile(path.resolve(__dirname, file), 'utf-8'));
 }
 
-main('examplecomponent.html').then(body => console.log(body));
+main('examplecomponent.html').then(result => console.log(result));
