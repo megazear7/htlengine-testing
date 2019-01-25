@@ -1,5 +1,4 @@
 const { Compiler } = require('@adobe/htlengine');
-const { Runtime } = require('@adobe/htlengine');
 const requireFromString = require('require-from-string');
 
 let headerComponent = {
