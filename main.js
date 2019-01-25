@@ -15,10 +15,7 @@ const compiler = new Compiler()
 
 async function main() {
   // Why does "compileToString" return a string of JavaScript?!
-  const js = await compiler.compileToString("
-    <h1>${headerComponent.title}</h1>
-    <p>${headerComponent.description}</p>
-  ");
+  const js = await compiler.compileToString("<h1>${headerComponent.title}</h1><p>${headerComponent.description}</p>");
 
   const { main } = requireFromString(js);
   const { body } = await main({});
