@@ -6,12 +6,13 @@ const compiler = new Compiler()
   .includeRuntime(true)
   .withRuntimeGlobalName('it');
 
-async function main() {
-  const template = await fs.readFile(path.resolve(__dirname, 'template.html'), 'utf-8');
+async function main(file) {
+  const template = await fs.readFile(path.resolve(__dirname, file), 'utf-8');
   const js = await compiler.compileToString(template);
   const { main } = requireFromString(js);
   const { body } = await main({});
   return body;
 }
 
-main().then(body => console.log(body));
+main('template.html')
+.then(body => console.log(body));
